@@ -4,7 +4,7 @@ Baseline model and job submission templates for the use-case "Health" of the AI-
 
 ## Execute training
 
-    cd /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/AI-HERO/health_challenge
+    cd /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/Helmholtz-AI-Energy/AI-HERO-Health
     sbatch train.sh
 
 
@@ -40,5 +40,5 @@ Find more information here: https://wiki.bwhpc.de/e/BwForCluster_JUSTUS_2_Slurm_
 Adapt the files run_eval.py and eval.sh \
 Afterwards submit the evaluation as another job:
     
-    cd /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/AI-HERO/health_challenge
+    cd /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/Helmholtz-AI-Energy/AI-HERO-Health
     sbatch eval.sh
