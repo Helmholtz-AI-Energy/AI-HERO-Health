@@ -1,10 +1,51 @@
 # AI-HERO-Health
 Baseline model and job submission templates for the use-case "Health" of the AI-HERO hackathon 2022 on energy efficient AI 
 
+# Haicore Setup
+ 
+For your setup please substitute `<YOUR_GROUP_NAME>` by your group ID.
+
+    /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>
+
+## Clone baseline to your group workspace
+    cd /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>
+    git clone https://github.com/Helmholtz-AI-Energy/AI-HERO-Health.git
+
+
+## Set up your environment (either virtualenv OR conda)
+
+### virtualenv (allows python 3.6 or 3.8)
+
+	# go to your workspace
+	cd /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>
+
+	# load python
+	module load devel/python/3.8
+
+	# create virtual environment
+	python -m venv health_baseline_env
+	source health_baseline_env/bin/activate
+	pip install -U pip
+	pip install -r /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/Helmholtz-AI-Energy/AI-HERO-Health/requirements.txt
+	
+### conda (at own risk!)
+
+	# load conda module
+	source /hkfs/work/workspace/scratch/im9193-conda/conda/etc/profile.d/conda.sh
+	
+	# create new environment in your workspace (you can specifiy any python version you want)
+	conda create --prefix /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/energy_baseline_conda_env python==3.8.0
+	
+	# activate env and install requirements
+	conda activate /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/energy_baseline_conda_env
+	pip install -U pip
+	pip install -r /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/Helmholtz-AI-Energy/AI-HERO-Health/requirements.txt
+
+
 
 ## Execute training
 
-    cd /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/Helmholtz-AI-Energy/AI-HERO-Health
+    cd /hkfs/work/workspace/scratch/im9193-<YOUR_GROUP_NAME>/Helmholtz-AI-Health/AI-HERO-Health
     sbatch train.sh
 
 
