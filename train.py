@@ -77,7 +77,7 @@ def main():
 
     device = torch.device("cuda")
 
-    # the following 3 lines are only needed to make the training fully reproducible
+    # the following 3 lines are only needed to make the training fully reproducible, you can remove them
     seed_everything(args.seed)
     os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':16:8'
     torch.use_deterministic_algorithms(True)

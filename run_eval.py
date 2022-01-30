@@ -30,7 +30,7 @@ def predict(model, device, test_loader):
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument("--weights_path", type=str, default='/hkfs/work/workspace/scratch/im9193-health_challenge_baseline/saved_models/vgg_baseline.pt',
-                        help="Model weights path")  # TODO: adapt to your model weights path
+                        help="Model weights path")  # TODO: adapt to your model weights path in the bash script
     parser.add_argument("--save_dir", type=str, help='Directory where weights and results are saved',
                         default='/hkfs/work/workspace/scratch/im9193-health_challenge_baseline/submission_test')
     parser.add_argument("--data_dir", type=str, help='Directory containing the data you want to predict',
@@ -46,11 +46,6 @@ if __name__ == '__main__':
     check_script = 'test_data' not in data_dir
 
     filename = weights_path.split('/')[-1]
-    '''weights_path = os.path.join(save_dir, filename)
-    print("Downloading", filename)
-    r = requests.get(model_path)
-    with open(weights_path, 'wb') as f:
-        f.write(r.content)'''
 
     # load model with pretrained weights
     model = SubmittedModel('VGG19')  # TODO: adjust arguments according to your model

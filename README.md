@@ -2,7 +2,7 @@ AI-HERO Health Challenge on energy efficient AI - Predicting Covid-19 from chest
 =============================================================================================
 
 This repository provides the code for the baseline. It contains a full training pipeline in Pytorch including dataloading, training a VGG and evaluating.
-You are free to clone this baseline and build from here.
+You are free to clone this baseline and build on it.
 The repository also includes necessary bash scripts for submitting to HAICORE. 
 
 The following sections contain detailed explanations about the structure, how to adapt the templates and how to get going on Haicore.
