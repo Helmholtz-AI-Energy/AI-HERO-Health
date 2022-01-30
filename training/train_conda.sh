@@ -17,4 +17,4 @@ group_workspace=/hkfs/work/workspace/scratch/im9193-health_challenge_baseline
 
 source /hkfs/work/workspace/scratch/im9193-conda/conda/etc/profile.d/conda.sh
 conda activate ${group_workspace}/health_baseline_conda_env
-python ${group_workspace}/AI-HERO/health_challenge/train.py --save_model --model_name vgg_baseline_conda
+python ${group_workspace}/AI-HERO-Health/train.py --save_model --model_name vgg_baseline_conda

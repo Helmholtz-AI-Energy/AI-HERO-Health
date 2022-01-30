@@ -16,4 +16,4 @@ export OMP_NUM_THREADS=8
 group_workspace=/hkfs/work/workspace/scratch/im9193-health_challenge_baseline
 
 source ${group_workspace}/health_baseline_env/bin/activate
-python ${group_workspace}/AI-HERO/health_challenge/train.py --save_model --model_name vgg_baseline
+python ${group_workspace}/AI-HERO-Health/train.py --save_model --model_name vgg_baseline

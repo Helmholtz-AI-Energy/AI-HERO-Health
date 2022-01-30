@@ -14,4 +14,4 @@ gt_path=/hkfs/work/workspace/scratch/im9193-health_challenge/data/valid.csv
 save_path=${group_workspace}/submission_test/
 
 source /hkfs/work/workspace/scratch/im9193-health_challenge/health_evaluation_env/bin/activate
-python -u ${group_workspace}/AI-HERO/health_challenge/calc_score.py --preds ${group_workspace}/submission_test/predictions.csv --gt ${gt_path} --save_dir ${save_path}
+python -u ${group_workspace}/AI-HERO-Health/calc_score.py --preds ${group_workspace}/submission_test/predictions.csv --gt ${gt_path} --save_dir ${save_path}

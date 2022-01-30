@@ -19,5 +19,5 @@ data=/hkfs/work/workspace/scratch/im9193-health_challenge
 source ${group_workspace}/health_baseline_env/bin/activate
 
 weights_path=/hkfs/work/workspace/scratch/im9193-health_challenge_baseline/saved_models/vgg_baseline.pt
-python -u ${group_workspace}/AI-HERO/health_challenge/run_eval.py --weights_path $weights_path --save_dir ${group_workspace}/submission_test --data_dir ${data}
+python -u ${group_workspace}/AI-HERO-Health/run_eval.py --weights_path $weights_path --save_dir ${group_workspace}/submission_test --data_dir ${data}
 

@@ -20,5 +20,5 @@ source /hkfs/work/workspace/scratch/im9193-conda/conda/etc/profile.d/conda.sh
 conda activate ${group_workspace}/health_baseline_conda_env
 
 weights_path=/hkfs/work/workspace/scratch/im9193-health_challenge_baseline/saved_models/vgg_baseline.pt
-python -u ${group_workspace}/AI-HERO/health_challenge/run_eval.py --weights_path $weights_path --save_dir ${group_workspace}/submission_test --data_dir ${data}
+python -u ${group_workspace}/AI-HERO-Health/run_eval.py --weights_path $weights_path --save_dir ${group_workspace}/submission_test --data_dir ${data}
 
