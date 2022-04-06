@@ -7,6 +7,7 @@
 #SBATCH --ntasks=1
 #SBATCH --time=02:30:00
 #SBATCH --output=/hkfs/work/workspace/scratch/im9193-health_challenge/baseline_eval.txt
+#SBATCH --exclusive
 
 export CUDA_CACHE_DISABLE=1
 
