@@ -29,12 +29,13 @@ def predict(model, device, test_loader):
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument("--weights_path", type=str, default='/hkfs/work/workspace/scratch/im9193-health_challenge_baseline/saved_models/vgg_baseline.pt',
-                        help="Model weights path")  # TODO: adapt to your model weights path in the bash script
+    parser.add_argument("--weights_path", type=str, default='/hkfs/work/workspace/scratch/im9193-health_challenge/saved_models/vgg_baseline.pt',
+                        help="Model weights path")
     parser.add_argument("--save_dir", type=str, help='Directory where weights and results are saved',
-                        default='/hkfs/work/workspace/scratch/im9193-health_challenge_baseline/submission_test')
+                        default='/hkfs/work/workspace/scratch/im9193-health_challenge/submission')
     parser.add_argument("--data_dir", type=str, help='Directory containing the data you want to predict',
                         default='/hkfs/work/workspace/scratch/im9193-health_challenge')
+    parser.add_argument('--force_cpu', action='store_true')
     args = parser.parse_args()
 
     weights_path = args.weights_path
@@ -43,12 +44,12 @@ if __name__ == '__main__':
 
     os.makedirs(save_dir, exist_ok=True)
 
-    check_script = 'test_data' not in data_dir
+    check_script = False
 
     filename = weights_path.split('/')[-1]
 
     # load model with pretrained weights
-    model = SubmittedModel('VGG19')  # TODO: adjust arguments according to your model
+    model = SubmittedModel('VGG19')
     model.load_state_dict(torch.load(weights_path))
     model.eval()
 
@@ -56,13 +57,13 @@ if __name__ == '__main__':
     data_split = 'validation' if check_script else 'test'
     print('Running inference on {} data'.format(data_split))
     testset = CovidImageDataset(
-        os.path.join(data_dir, 'evaluation/{}.csv'.format('valid' if check_script else 'test')),
-        os.path.join(data_dir, 'data/imgs' if check_script else 'data/test'),
+        os.path.join(data_dir, 'data/{}.csv'.format('valid' if check_script else 'test')),
+        os.path.join(data_dir, 'data/imgs' if check_script else 'data/test_imgs'),
         transform=None)
     testloader = torch.utils.data.DataLoader(testset, batch_size=64, shuffle=False, num_workers=128)
 
     # run inference
-    device = torch.device("cuda")
+    device = torch.device("cuda") if (torch.cuda.is_available() and not args.force_cpu) else torch.device("cpu")
 
     predictions = predict(model, device, testloader)
     flattened_preds = [np.concatenate(i) for i in list(zip(*predictions))]

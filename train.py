@@ -72,12 +72,13 @@ def main():
                         help='how many batches to wait before logging training status')
     parser.add_argument('--save_model', action='store_true', help='saves the trained model')
     parser.add_argument('--model_name', type=str, help='model file name', default='vgg_baseline')
+    parser.add_argument('--force_cpu', action='store_true')
 
     args = parser.parse_args()
 
-    device = torch.device("cuda")
+    device = torch.device("cuda") if (torch.cuda.is_available() and not args.force_cpu) else torch.device("cpu")
 
-    # the following 3 lines are only needed to make the training fully reproducible, you can remove them
+    # the following 3 lines are only needed to make the training fully reproducible
     seed_everything(args.seed)
     os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':16:8'
     torch.use_deterministic_algorithms(True)
@@ -97,11 +98,9 @@ def main():
     valloader = torch.utils.data.DataLoader(valset, batch_size=64, shuffle=False, num_workers=128,
                                             worker_init_fn=seed_worker)
 
-    model = VGG('VGG19').cuda()
+    model = VGG('VGG19').to(device)
     optimizer = torch.optim.SGD(model.parameters(), lr=0.1, nesterov=True, momentum=0.9)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.num_epochs)
-
-    print('CUDA available:', torch.cuda.is_available())
 
     for epoch in range(1, args.num_epochs + 1):
         train(args, model, device, trainloader, optimizer, epoch)
@@ -109,7 +108,7 @@ def main():
         scheduler.step()
 
     if args.save_model:
-        model_dir = '/hkfs/work/workspace/scratch/im9193-health_challenge_baseline/saved_models'  # TODO adapt to your group workspace
+        model_dir = '/hkfs/work/workspace/scratch/im9193-health_challenge/saved_models'
         os.makedirs(model_dir, exist_ok=True)
         torch.save(model.state_dict(), os.path.join(model_dir, "{}.pt".format(args.model_name)))
 
